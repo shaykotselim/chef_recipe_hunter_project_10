@@ -8,6 +8,7 @@ import Blog from "../pages/blog/Blog";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import NotFound from "../pages/notfound/NotFound";
+import MenuManin from "../home/menu/MenuManin";
 
 // const { default: Main } = require("../layout/Main");
 // const { default: Home } = require("../home/Home/Home");
@@ -20,11 +21,6 @@ const router = createBrowserRouter([
         {
             path:'/',
             element:<Home/>,
-            children:[
-                {
-                    
-                }
-            ] 
 
         }, 
         {
@@ -40,11 +36,18 @@ const router = createBrowserRouter([
             element:<Register/>
         },
         {
-            path:"*",
-            element:<NotFound/>
-        }
+            path:'/recipe/:id',
+            element:<MenuManin></MenuManin>,
+            loader: ({params}) => fetch(`http://localhost:5000/recipe/${params.id}`)
+        },
+       
 
-      ]
+      ],
+      
     },
+    {
+        path:"*",
+        element:<NotFound/>
+    }
   ]);
   export default router;
