@@ -10,7 +10,11 @@ const Chef = () => {
         .then(data => setChefs(data))
     },[])
     return (
-        <div className="container mx-auto grid gap-8 grid-cols-3">
+      <div>
+            <div className="text-center">
+                <p className="text-7xl font-serif p-8">Our Master Chef Here</p>
+            </div>
+          <div className="container mx-auto lg:grid gap-8 grid-cols-3">
             {
                  chefs.map(chef=><ChefCard
                     key = {chef.id}
@@ -19,6 +23,7 @@ const Chef = () => {
             }
 
         </div>
+      </div>
     );
 };
 
