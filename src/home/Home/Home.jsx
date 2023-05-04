@@ -2,6 +2,7 @@
 
 import BestService from "../menu/BestService";
 import Chef from "../menu/Chef";
+import ToServe from "../menu/ToServe";
 import Hero from "./Hero";
 
 
@@ -11,6 +12,7 @@ const Home = () => {
            <Hero></Hero>
            <BestService/>
            <Chef></Chef>
+           <ToServe/>
             
         </div>
     );

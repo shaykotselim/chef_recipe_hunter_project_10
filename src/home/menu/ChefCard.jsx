@@ -1,7 +1,7 @@
 import { AiFillLike } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const ChefCard = ({ chef }) => {
-  const { name, image, gender, experience, recipes, likes } = chef;
+  const { name, image, experience, recipes, likes } = chef;
   return (
     <div>
       <div className=" shadow-lg">

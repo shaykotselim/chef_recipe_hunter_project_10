@@ -1,7 +1,6 @@
 import birthday from "../../assets/birthday.jpg";
 import meatings from "../../assets/meatings.jpg";
 import wedding from "../../assets/wedding.jpg";
-import Marquee from "react-fast-marquee";
 const BestService = () => {
   return (
     <>
