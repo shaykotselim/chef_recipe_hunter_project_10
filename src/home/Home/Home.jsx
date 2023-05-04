@@ -1,6 +1,6 @@
 // import Hero from "./Hero";
 
-import Menu from "../menu/Menu";
+import Chef from "../menu/Chef";
 import Hero from "./Hero";
 
 
@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div>
            <Hero></Hero>
-           <Menu></Menu>
+           <Chef></Chef>
 
         </div>
     );

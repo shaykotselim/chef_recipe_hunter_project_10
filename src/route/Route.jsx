@@ -8,7 +8,7 @@ import Blog from "../pages/blog/Blog";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import NotFound from "../pages/notfound/NotFound";
-import MenuManin from "../home/menu/MenuManin";
+import RecipeDetails from "../home/menu/RecipeDetails";
 
 // const { default: Main } = require("../layout/Main");
 // const { default: Home } = require("../home/Home/Home");
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         },
         {
             path:'/recipe/:id',
-            element:<MenuManin></MenuManin>,
+            element:<RecipeDetails></RecipeDetails>,
             loader: ({params}) => fetch(`http://localhost:5000/recipe/${params.id}`)
         },
        

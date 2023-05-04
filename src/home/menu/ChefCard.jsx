@@ -1,9 +1,6 @@
-// import React from 'react';
-
-// import { Link } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
 import { Link } from "react-router-dom";
-const MenuNav = ({ chef }) => {
+const ChefCard = ({ chef }) => {
   const { name, image, gender, experience, recipes, likes } = chef;
   return (
     <div>
@@ -31,4 +28,4 @@ const MenuNav = ({ chef }) => {
   );
 };
 
-export default MenuNav;
+export default ChefCard;

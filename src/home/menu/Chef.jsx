@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-// import MenuManin from "./MenuManin";
-import MenuNav from "./MenuNav";
+import ChefCard from "./ChefCard";
 
 
-const Menu = () => {
+const Chef = () => {
     const [chefs, setChefs] = useState([]) 
     useEffect(()=>{
         fetch('http://localhost:5000/chef')
@@ -11,16 +10,16 @@ const Menu = () => {
         .then(data => setChefs(data))
     },[])
     return (
-        <div className="container mx-auto grid gap-8 grid-cols-4">
+        <div className="container mx-auto grid gap-8 grid-cols-3">
             {
-                 chefs.map(chef=><MenuNav
+                 chefs.map(chef=><ChefCard
                     key = {chef.id}
                     chef = {chef}
-                 ></MenuNav>) 
+                 ></ChefCard>) 
             }
 
         </div>
     );
 };
 
-export default Menu;
+export default Chef;
