@@ -1,12 +1,15 @@
 import { AiFillLike } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import LazyLoad from 'react-lazy-load';
 const ChefCard = (props) => {
   const { name, image, experience, _recipes, likes, id } =props.chef;
   return (
     <div>
       <div className=" shadow-lg">
         <div className="p-4">
-          <img className="w-[100%] h-[400px]" src={image} alt="" />
+         <LazyLoad height={400} offset={200}>
+         <img className="w-[100%] h-[400px]" src={image} alt="" />
+         </LazyLoad>
         </div>
         <div className="text-center  p-4  ">
           <p>{name}</p>

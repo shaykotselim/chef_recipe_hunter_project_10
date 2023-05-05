@@ -10,9 +10,12 @@ const RecipeDetails = () => {
   console.log(recipeDetails);
   return (
     <div>
-      <div className="container mx-auto">
-        <div className="grid gap-4 grid-cols-3 items-center">
+      <div className="lg:container px-4 lg:mx-auto">
+        <div className="lg:grid gap-4 grid-cols-3 items-center">
           <div className="col-span-2">
+            {/* 
+              ----------------chef Image--------------
+            */}
             <img className="h-[500px] w-full " src={recipes.image} alt="" />
           </div>
           <div>
@@ -36,8 +39,13 @@ const RecipeDetails = () => {
       <p className="text-4xl font-serif text-center mt-8">
         {recipes.name} Special {recipeDetails.length} Items food
       </p>
+      
+      {/* 
+      ---------------Chef Recipe Card Here-----------------------
+        */}
+
       <div className="container mx-auto">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="lg:grid grid-cols-3 gap-4">
           {recipeDetails.map((recip) => (
             <ChefRecipe key={recipes.id} recip={recip}></ChefRecipe>
           ))}
