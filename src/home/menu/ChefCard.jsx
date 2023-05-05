@@ -1,8 +1,11 @@
 import { AiFillLike } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import LazyLoad from 'react-lazy-load';
+
 const ChefCard = (props) => {
+  
   const { name, image, experience, _recipes, likes, id } =props.chef;
+
   return (
     <div>
       <div className=" shadow-lg">

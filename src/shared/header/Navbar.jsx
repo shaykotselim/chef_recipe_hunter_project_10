@@ -79,10 +79,10 @@ export default function Example() {
         <div className="hidden lg:block">{navList}</div>
         <div className="lg:flex lg:items-center lg:gap-4">
           {
-            user?<p>{user.displayName}</p>:''
+            user?<p>{user?.displayName}</p>:''
           }
           {
-            user?<img className="h-[40px] w-[40px] rounded-full"  src={user.photoURL} alt="" />:''
+            user?<img title={user?.displayName} className="h-[40px] w-[40px] rounded-full"  src={user.photoURL} alt="" />:''
           }
         </div>
         <div>
