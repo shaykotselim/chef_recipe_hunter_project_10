@@ -12,7 +12,7 @@ export default function Example() {
         <div className="lg:grid grid-cols-3 gap-8">
           <div>
             <div>
-              <p className="text-white lg-mt-0 mt-8">About Us</p>
+              <p className="text-white lg:mt-0 mt-8">About Us</p>
               <Link to="/">
                 <p className="text-white mt-4">Home</p>
               </Link>

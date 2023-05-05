@@ -1,9 +1,17 @@
 // import React from 'react';
+import { useState } from "react";
 import { AiFillStar,AiFillHeart } from "react-icons/ai";
 import LazyLoad from "react-lazy-load";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const ChefRecipe = ({recip}) => {
     const {name,ingredients, image, price, method,rating} = recip;
+    
+    const notify = () => {
+        toast("Add your Faviroute Recipe")
+       
+    };
     return (
         <div className="mt-8 p-8">
             <div>
@@ -18,8 +26,10 @@ const ChefRecipe = ({recip}) => {
                         <p className="flex items-center font-semibold text-xl">{rating.number}<AiFillStar className="text-yellow-600"/></p>
                         <p className="font-semibold">{rating.badge}</p>
                         </div>
-                    <p className="text-red-900 text-xl mt-2 lg:mt-0 font-semibold"><AiFillHeart/></p>
-
+                    
+                        <p onClick={notify} className="text-red-900 text-xl mt-2 lg:mt-0 font-semibold"><AiFillHeart/></p>
+                    
+                    <ToastContainer />
                 </div>
                 <div className="mt-2">
                     <p className="font-bold" > Price: ${price}</p>
