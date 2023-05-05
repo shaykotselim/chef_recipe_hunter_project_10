@@ -7,10 +7,12 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
-
+import { AuthContext } from "../../provider/AuthProvider";
+import { useContext } from "react";
 export default function Example() {
   const [openNav, setOpenNav] = useState(false);
-
+  const {user,logOut} = useContext(AuthContext)
+  // console.log(user,logOut);
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -50,6 +52,15 @@ export default function Example() {
     </ul>
   );
 
+  // Sign Out Area here----------------------------------------------------------------
+  const handleSingOut =()=>{
+    logOut()
+    .then()
+    .catch(error=>{
+      console.log(error.message);
+    })
+  }
+
   return (
     <Navbar className="mx-auto shadow-none max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
@@ -66,26 +77,36 @@ export default function Example() {
           </Link>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
+        <div className="lg:flex lg:items-center lg:gap-4">
+          {
+            user?<p>{user.displayName}</p>:''
+          }
+          {
+            user?<img className="h-[40px] w-[40px] rounded-full"  src={user.photoURL} alt="" />:''
+          }
+        </div>
         <div>
-          <Link to="/login">
+          {user ?  <Button
+              variant="gradient"
+              size="sm"
+              className="hidden ml-2 lg:inline-block"
+              onClick={handleSingOut}
+            >
+              <span>Sign-out</span>
+            </Button>:<Link to="/login">
             <Button
               variant="gradient"
               size="sm"
               className="hidden lg:inline-block"
             >
-              <span>Log in</span>
+              <span>Sign in</span>
             </Button>
           </Link>
-          <Link to="/register">
-            <Button
-              variant="gradient"
-              size="sm"
-              className="hidden ml-2 lg:inline-block"
-            >
-              <span>Register</span>
-            </Button>
-          </Link>
+        
+          }
+          
         </div>
+        
         <IconButton
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -123,21 +144,25 @@ export default function Example() {
             </svg>
           )}
         </IconButton>
+        
+        {/* <img src="" alt="" /> */}
       </div>
       <MobileNav open={openNav}>
         <div className="container mx-auto">
           {navList}
           <div className="flex justify-center gap-4">
-            <Link to="/login">
-              <Button variant="gradient" size="sm" fullWidth className="mb-2">
-                <span>Login</span>
+            
+            {
+             user? <Button onClick={handleSingOut} variant="gradient" size="sm" fullWidth className="mb-2">
+                <span>Sign out</span>
+              </Button>:<Link to="/login">
+                  <Button  variant="gradient" size="sm" fullWidth className="mb-2">
+                <span>Sign in</span>
               </Button>
             </Link>
-            <Link to="/register">
-              <Button variant="gradient" size="sm" fullWidth className="mb-2">
-                <span>Register</span>
-              </Button>
-            </Link>
+            }
+              
+            
           </div>
         </div>
       </MobileNav>

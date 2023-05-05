@@ -1,5 +1,5 @@
 // import React, { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, } from "firebase/auth";
 import app from '../firebase/firebase.config';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -13,11 +13,12 @@ const auth = getAuth(app);
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    console.log(user);
+    // console.log(user);
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
+   
     const profileUpdate = (currentUser,displayName, photoUrl )=>{
         setLoading(true);
         return updateProfile (currentUser,{
@@ -39,7 +40,7 @@ const AuthProvider = ({children}) => {
 
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, loggedUser => {
-            console.log('logged in user inside auth state observer', loggedUser)
+            // console.log('logged in user inside auth state observer', loggedUser)
             setUser(loggedUser);
             setLoading(false);
         })

@@ -4,26 +4,64 @@ import {
     Button,
     Typography,
   } from "@material-tailwind/react";
+
 import { useContext, useState } from "react";
-  import { Link, } from "react-router-dom";
+import { Link, useLocation, useNavigate, } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-  
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {AiOutlineGithub,AiOutlineGooglePlus} from "react-icons/ai";
+import app from "../../firebase/firebase.config";
+
+const auth = getAuth(app)
+const githubProvider = new GithubAuthProvider(); 
+const googleProvider = new GoogleAuthProvider();
   export default function Login() {
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState('');
     const {signIn} = useContext(AuthContext)
+    
+    const previousLocation = useLocation()
+    console.log(previousLocation);
+    const navigate = useNavigate()
+    const from  = location.state?.from?.pathname || '/'
     const handleSubmit =(event)=>{
       event.preventDefault();
         signIn(email,password)
         .then(result=>{
           const logingUser = result.user
+          navigate(from,{replace: true})
+      
           setError('Login Successfully')
         })
         .catch(error=>{
           setError(error.message);
         })
     }
+    // ------------Github Login-----------------------------
+
+    const handleGithubLogin =()=>{
+        signInWithPopup(auth,githubProvider)
+        .then(user=>{
+          // console.log(user);
+          navigate(from,{replace: true})
+        })
+        .catch(error=>{
+          console.log(error.message);
+        })
+
+    }
+    const handleGoogleLogin = ()=>{
+      signInWithPopup(auth, googleProvider)
+      .then(user=>{
+        navigate(from,{replace: true})
+      })
+      .catch(error=>{
+        console.log(error.message);
+      })
+    }
+    
     return (
       <div className="container text-center mx-auto">
         <Card color="transparent" shadow={false}>
@@ -58,7 +96,7 @@ import { AuthContext } from "../../provider/AuthProvider";
             />
             </div>
            
-            <Button to="/" type="submit" className="mt-6" fullWidth>
+            <Button type="submit" className="mt-6" fullWidth>
               Login
             </Button>
             <Typography color="gray" className="mt-4 text-center font-normal">
@@ -72,6 +110,26 @@ import { AuthContext } from "../../provider/AuthProvider";
             </Typography>
           </form>
         </Card>
+        {/* -------------------Gmail & Github Login */}
+        <div className="flex justify-center items-center gap-4">
+            <div>
+            <button onClick={handleGithubLogin} className="text-6xl">
+            <span className="text-sm">Github SignIn</span>
+            <AiOutlineGithub/>
+              
+            </button>
+            </div>
+            <div>
+            <Link to='/'>
+             <button 
+              onClick={handleGoogleLogin}
+              className="text-6xl">
+                <span className="text-sm">Google SignIn</span>
+               <AiOutlineGooglePlus/>
+             </button>
+            </Link>
+            </div>
+        </div>
       </div>
     );
   }
