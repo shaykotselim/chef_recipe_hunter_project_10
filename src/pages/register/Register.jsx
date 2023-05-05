@@ -5,26 +5,36 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import {  useState } from "react";
+import {  useContext, useState } from "react";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "../../provider/AuthProvider";
+import { AuthContext } from "../../provider/AuthProvider";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [photo, setPhoto] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const { createUser } = useContext(AuthContext);
+  const { createUser,profileUpdate } = useContext(AuthContext);
 
-  const handleRegister = async (event) => {
+  const handleRegister = (event) => {
+    
     event.preventDefault();
-    try {
-      const result = await createUser(email, password);
-      const createdUser = result.user;
-      console.log('lskdfjlkdsf',createdUser);
-    } catch (error) {
-      console.log(error);
-    }
+    createUser(email, password)
+    .then(result=>{
+      const loggedUser = result.user;
+      profileUpdate(result.user,name, photo)
+      .then(()=>{
+          console.log('profile name & photo url update');
+      })
+      .catch(error=>{
+        console.log(error.message);
+      })
+    })
+    
+    .catch(error=>{
+      console.log(error.message);
+    })
+
   };
 
   return (

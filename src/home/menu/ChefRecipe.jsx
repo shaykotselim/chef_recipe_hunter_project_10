@@ -18,13 +18,14 @@ const ChefRecipe = ({recip}) => {
                 <div className="mt-2">
                     <p className="font-bold" > Price: ${price}</p>
                 </div>
-                <div className="mt-4 text-sm">
-                    <p className="font-semibold underline">Ingredients:</p>
+                <p className="font-semibold mt-4 bg-blue-800 text-white p-1 rounded underline">Ingredients:</p>
+                <div className="h-32 overflow-y-auto border p-2 rounded border-black text-sm">
+                    
                     <p className="mt-2">{ingredients}</p>
                 </div>
-                
-                <div className="mt-8 text-sm">
-                    <p className="font-semibold underline">Cooking Instructions:</p>
+                <p className="font-semibold mt-8 underline bg-blue-800 p-1 rounded text-white">Cooking Instructions:</p>
+                <div className=" border border-black rounded p-2 text-sm h-32 overflow-y-auto">
+                    
                     <p className="mt-2">{method}</p>
                 </div>
 

@@ -18,7 +18,7 @@ const ChefCard = (props) => {
           </span>
 
             <Link to={`/recipe/${id}`}>
-                <button className=" w-full bg-gradient-to-r from-purple-600 via-blue-600 to-purple-800 p-2 rounded text-white ">View Recipes</button>
+                <button className=" bg-blue-600 p-2 rounded text-white ">View Recipes</button>
             </Link>
 
         </div>
